@@ -1,6 +1,5 @@
 package com.example.fragmenttutorial
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.fragment.app.setFragmentResult
 
 
 class FragmentB: Fragment() {
-    @SuppressLint("MissingInflatedId", "ResourceType", "CommitTransaction")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

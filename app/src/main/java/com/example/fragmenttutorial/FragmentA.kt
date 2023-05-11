@@ -36,7 +36,6 @@ class FragmentA: Fragment() {
             text.text = result ?: "I’m waiting for updates!"
         }
 
-
         val button = view.findViewById<Button>(R.id.a_button_one)
         button.setOnClickListener {
             val fragmentB = FragmentB()
