@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.activityViewModels
 
 
 class FragmentB: Fragment() {
+    // View model solution
+    private val viewModel: ItemViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +25,11 @@ class FragmentB: Fragment() {
 
         buttonOne.setOnClickListener {
             val newFragmentATitle = "Hello from fragment B!"
-            setFragmentResult("requestKey", bundleOf("title" to newFragmentATitle))
+            // View model solution
+            viewModel.firstButtonTitle(newFragmentATitle)
+
+            // Fragment Result AP solution
+//            setFragmentResult("requestKey", bundleOf("title" to newFragmentATitle))
         }
 
         buttonTwo.setOnClickListener {

@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.activityViewModels
 
 
 class FragmentC: Fragment() {
+    // View model solution
+    private val viewModel: ItemViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,14 +26,22 @@ class FragmentC: Fragment() {
 
         buttonOne.setOnClickListener {
             val newFragmentATitle = "Hello from fragment C!"
-            setFragmentResult("requestKey", bundleOf("title" to newFragmentATitle))
+            // Fragment Result AP solution
+//            setFragmentResult("requestKey", bundleOf("title" to newFragmentATitle))
+
+            // View model solution
+            viewModel.firstButtonTitle(newFragmentATitle)
         }
 
         buttonTwo.setOnClickListener {
             val fragment = FragmentA()
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container_view, fragment)
-            setFragmentResult("requestKey", bundleOf("title" to null))
+            // Fragment Result AP solution
+//            setFragmentResult("requestKey", bundleOf("title" to null))
+            // View model solution
+            viewModel.clearData()
+
             transaction?.commit()
             activity?.supportFragmentManager?.popBackStack("fragments", FragmentManager.POP_BACK_STACK_INCLUSIVE)
         }
